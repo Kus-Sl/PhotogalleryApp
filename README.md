@@ -1,2 +1,2 @@
 # PhotogalleryApp
-SwiftBook Course 2. Lesson 7
+SwiftBook Course 2. Lesson 10
