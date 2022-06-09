@@ -20,12 +20,8 @@ class StartViewController: UIViewController {
             galleryVC.createGallery(by: Link.classicURL.rawValue)
         case TypeGallery.blur.rawValue:
             galleryVC.createGallery(by: Link.classicURL.rawValue)
-            print(2)
-        case TypeGallery.grayscale.rawValue:
-            galleryVC.createGallery(by: Link.classicURL.rawValue)
-            print(3)
         default:
-            print("def")
+            galleryVC.createGallery(by: Link.classicURL.rawValue)
         }
     }
 }
