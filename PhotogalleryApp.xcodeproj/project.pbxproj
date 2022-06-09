@@ -15,6 +15,8 @@
 		A83C1BE22850C48B0039A604 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83C1BE12850C48B0039A604 /* StartViewController.swift */; };
 		A83C1BE42850CAE10039A604 /* GalleryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83C1BE32850CAE00039A604 /* GalleryCollectionViewController.swift */; };
 		A8879C4D2850D76600EDAE80 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8879C4C2850D76600EDAE80 /* PhotoCollectionViewCell.swift */; };
+		A8FEEB352851C13C00E63117 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FEEB342851C13C00E63117 /* Photo.swift */; };
+		A8FEEB372851C1D600E63117 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FEEB362851C1D600E63117 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		A83C1BE12850C48B0039A604 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		A83C1BE32850CAE00039A604 /* GalleryCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewController.swift; sourceTree = "<group>"; };
 		A8879C4C2850D76600EDAE80 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoCollectionViewCell.swift; path = PhotogalleryApp/ViewControllers/PhotoCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
+		A8FEEB342851C13C00E63117 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Photo.swift; path = PhotogalleryApp/Photo.swift; sourceTree = SOURCE_ROOT; };
+		A8FEEB362851C1D600E63117 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = PhotogalleryApp/NetworkManager.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,7 @@
 		A83C1BDB2850C18B0039A604 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A8FEEB342851C13C00E63117 /* Photo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -117,6 +122,7 @@
 		A83C1BE02850C2890039A604 /* ServiceLayers */ = {
 			isa = PBXGroup;
 			children = (
+				A8FEEB362851C1D600E63117 /* NetworkManager.swift */,
 			);
 			path = ServiceLayers;
 			sourceTree = "<group>";
@@ -192,8 +198,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8FEEB352851C13C00E63117 /* Photo.swift in Sources */,
 				A83C1BC82850BFBF0039A604 /* AppDelegate.swift in Sources */,
 				A8879C4D2850D76600EDAE80 /* PhotoCollectionViewCell.swift in Sources */,
+				A8FEEB372851C1D600E63117 /* NetworkManager.swift in Sources */,
 				A83C1BCA2850BFBF0039A604 /* SceneDelegate.swift in Sources */,
 				A83C1BE22850C48B0039A604 /* StartViewController.swift in Sources */,
 				A83C1BE42850CAE10039A604 /* GalleryCollectionViewController.swift in Sources */,

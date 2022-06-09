@@ -9,21 +9,29 @@ import UIKit
 
 class StartViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+        guard let segueIdentifier = segue.identifier else { return }
+        guard let galleryVC = segue.destination as? GalleryCollectionViewController
+        else { return }
+        galleryVC.title = segueIdentifier
 
+        switch segueIdentifier {
+        case TypeGallery.classic.rawValue:
+            galleryVC.createGallery(by: Link.classicURL.rawValue)
+        case TypeGallery.blur.rawValue:
+            galleryVC.createGallery(by: Link.classicURL.rawValue)
+            print(2)
+        case TypeGallery.grayscale.rawValue:
+            galleryVC.createGallery(by: Link.classicURL.rawValue)
+            print(3)
+        default:
+            print("def")
+        }
+    }
+}
+
+enum TypeGallery: String {
+    case classic = "Classic Photos"
+    case blur = "Blur Photos"
+    case grayscale = "Grayscale Photos"
 }

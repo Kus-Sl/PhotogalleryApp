@@ -9,29 +9,29 @@ import UIKit
 
 class GalleryCollectionViewController: UICollectionViewController {
 
+    var photos: [Photo]?
+
     private let cells: CGFloat = 3
     private let spacing: CGFloat = 2.5
 
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func createGallery(by url: String) {
+        NetworkManager.shared.fetchPhotos(url: url) { photos in
+            self.photos = photos
+            self.collectionView.reloadData()
+        }
     }
 }
-
-
-
-
 
 // MARK: UICollectionViewDataSource
 extension GalleryCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return photos?.count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
 
-        cell.photo.image = cell.images.randomElement()
+        cell.configure(by: photos?[indexPath.item])
 
         return cell
     }
@@ -43,7 +43,6 @@ extension GalleryCollectionViewController {
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 }
-
 
 // MARK: UICollectionViewDelegateFlowLayout
 extension GalleryCollectionViewController: UICollectionViewDelegateFlowLayout {
