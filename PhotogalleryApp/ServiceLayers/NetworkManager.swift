@@ -43,6 +43,4 @@ class NetworkManager {
             completionHandler(photoData)
         }
     }
-
-
 }

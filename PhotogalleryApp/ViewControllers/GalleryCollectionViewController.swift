@@ -12,7 +12,7 @@ class GalleryCollectionViewController: UICollectionViewController {
     var photos: [Photo]?
 
     private let cells: CGFloat = 3
-    private let spacing: CGFloat = 2.5
+    private let spacing: CGFloat = 3
 
     func createGallery(by url: String) {
         NetworkManager.shared.fetchPhotos(url: url) { photos in
@@ -25,7 +25,7 @@ class GalleryCollectionViewController: UICollectionViewController {
 // MARK: UICollectionViewDataSource
 extension GalleryCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos?.count ?? 0
+        photos?.count ?? 0
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
