@@ -19,7 +19,7 @@ class NetworkManager {
         URLSession.shared.dataTask(with: dataURL) { data, _, error in
             guard let data = data else {
                 print(error?.localizedDescription ?? "No error description")
-                print("Error on GET request level")
+                print("Error on GET request photos level")
                 return
             }
 
@@ -31,16 +31,25 @@ class NetworkManager {
                 }
             } catch let error {
                 print(error.localizedDescription)
-                print("Error on decode level")
+                print("Error on decode photos level")
             }
         }.resume()
     }
 
     func fetchPhoto(url: String, completionHandler: @escaping (Data) -> Void) {
         guard let photoURL = URL(string: url) else { return }
-        guard let photoData = try? Data(contentsOf: photoURL) else { return }
+        guard let photoData = try? Data(contentsOf: photoURL) else {
+            print("Error on get request photo level")
+            return
+        }
         DispatchQueue.main.async {
             completionHandler(photoData)
         }
     }
+}
+
+enum Link: String {
+    case classicURL =  "https://picsum.photos/v2/list?page=1"
+    case blurURL = "1"
+    case grayscaleURL = "2"
 }

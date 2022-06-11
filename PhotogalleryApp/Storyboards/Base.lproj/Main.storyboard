@@ -125,17 +125,23 @@
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fq9-kc-6OY">
                                             <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
                                         </imageView>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="sIC-co-IuF">
+                                            <rect key="frame" x="60" y="60" width="20" height="20"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="fq9-kc-6OY" firstAttribute="leading" secondItem="i8y-15-knz" secondAttribute="leading" id="7QQ-We-WNp"/>
+                                        <constraint firstItem="sIC-co-IuF" firstAttribute="centerY" secondItem="i8y-15-knz" secondAttribute="centerY" id="BBr-uk-0GY"/>
+                                        <constraint firstItem="sIC-co-IuF" firstAttribute="centerX" secondItem="i8y-15-knz" secondAttribute="centerX" id="ZHq-SM-Hmt"/>
                                         <constraint firstItem="fq9-kc-6OY" firstAttribute="top" secondItem="i8y-15-knz" secondAttribute="top" id="iZg-1R-YpC"/>
                                         <constraint firstAttribute="trailing" secondItem="fq9-kc-6OY" secondAttribute="trailing" id="qEP-Cr-dz2"/>
                                         <constraint firstAttribute="bottom" secondItem="fq9-kc-6OY" secondAttribute="bottom" id="uRF-Qd-93t"/>
                                     </constraints>
                                 </collectionViewCellContentView>
-                                <color key="backgroundColor" red="0.82831002269999998" green="0.60799770450000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                 <size key="customSize" width="140" height="140"/>
                                 <connections>
+                                    <outlet property="activityIndicator" destination="sIC-co-IuF" id="VuQ-gd-Ljg"/>
                                     <outlet property="photo" destination="fq9-kc-6OY" id="Kdu-Oc-T0t"/>
                                 </connections>
                             </collectionViewCell>
@@ -158,6 +164,9 @@
     <resources>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

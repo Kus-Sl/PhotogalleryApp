@@ -9,6 +9,7 @@ import UIKit
 
 class GalleryCollectionViewController: UICollectionViewController {
 
+
     var photos: [Photo]?
 
     private let cells: CGFloat = 3

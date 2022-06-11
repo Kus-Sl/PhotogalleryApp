@@ -17,8 +17,4 @@ struct Photo: Codable {
     let download_url: String?
 }
 
-enum Link: String {
-    case classicURL =  "https://picsum.photos/v2/list?page=25"
-    case blurURL = "1"
-    case grayscaleURL = "2"
-}
+
