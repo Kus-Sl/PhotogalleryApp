@@ -17,17 +17,11 @@ class StartViewController: UIViewController {
 
         switch segueIdentifier {
         case TypeGallery.classic.rawValue:
-            galleryVC.createGallery(by: PhotoLink.classicApi.rawValue)
+            galleryVC.createClassicGallery(by: PhotoLink.classicApi.rawValue)
         case TypeGallery.blur.rawValue:
-            galleryVC.createGallery(by: PhotoLink.classicApi.rawValue)
+            galleryVC.createBlurOrGrayscaleGallery(by: PhotoLink.blurApi.rawValue)
         default:
-            galleryVC.createGallery(by: PhotoLink.classicApi.rawValue)
+            galleryVC.createBlurOrGrayscaleGallery(by: PhotoLink.grayscaleApi.rawValue)
         }
     }
-}
-
-enum TypeGallery: String {
-    case classic = "Classic Photos"
-    case blur = "Blur Photos"
-    case grayscale = "Grayscale Photos"
 }

@@ -14,11 +14,15 @@ class GalleryCollectionViewController: UICollectionViewController {
     private let cells: CGFloat = 3
     private let spacing: CGFloat = 3
 
-    func createGallery(by url: String) {
+    func createClassicGallery(by url: String) {
         NetworkManager.shared.fetchPhotos(url: url) { photos in
             self.photos = photos
             self.collectionView.reloadData()
         }
+    }
+
+    func createBlurOrGrayscaleGallery(by url: String) {
+        photos = [Photo](repeating: Photo(download_url: url), count: 30)
     }
 }
 
@@ -74,5 +78,8 @@ extension GalleryCollectionViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-
-
+enum TypeGallery: String {
+    case classic = "Classic Photos"
+    case blur = "Blur Photos"
+    case grayscale = "Grayscale Photos"
+}
