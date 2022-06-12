@@ -17,11 +17,11 @@ class StartViewController: UIViewController {
 
         switch segueIdentifier {
         case TypeGallery.classic.rawValue:
-            galleryVC.createGallery(by: Link.classicURL.rawValue)
+            galleryVC.createGallery(by: PhotoLink.classicApi.rawValue)
         case TypeGallery.blur.rawValue:
-            galleryVC.createGallery(by: Link.classicURL.rawValue)
+            galleryVC.createGallery(by: PhotoLink.classicApi.rawValue)
         default:
-            galleryVC.createGallery(by: Link.classicURL.rawValue)
+            galleryVC.createGallery(by: PhotoLink.classicApi.rawValue)
         }
     }
 }

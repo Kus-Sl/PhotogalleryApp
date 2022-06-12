@@ -23,7 +23,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
             }
         }
     }
-    
+
         override func prepareForReuse() {
             super.prepareForReuse()
             photo.image = nil

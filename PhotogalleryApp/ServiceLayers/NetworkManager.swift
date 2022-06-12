@@ -47,9 +47,3 @@ class NetworkManager {
         }
     }
 }
-
-enum Link: String {
-    case classicURL =  "https://picsum.photos/v2/list?page=1"
-    case blurURL = "1"
-    case grayscaleURL = "2"
-}
