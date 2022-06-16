@@ -16,17 +16,15 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     
     func configure(by photo: Photo?) {
         guard let photoURL = photo?.download_url else { return }
-        DispatchQueue.global().async {
-            NetworkManager.shared.fetchPhoto(url: photoURL) { data in
-                self.photo.image = UIImage(data: data)
-                self.activityIndicator.stopAnimating()
-            }
+        NetworkManager.shared.fetchPhoto(url: photoURL) { data in
+            self.photo.image = UIImage(data: data)
+            self.activityIndicator.stopAnimating()
         }
     }
-
-        override func prepareForReuse() {
-            super.prepareForReuse()
-            photo.image = nil
-            activityIndicator.startAnimating()
-        }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        photo.image = nil
+        activityIndicator.startAnimating()
     }
+}

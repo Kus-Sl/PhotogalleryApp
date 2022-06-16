@@ -25,9 +25,3 @@ struct Photo: Codable {
         self.url = nil
     }
 }
-
-enum PhotoLink: String {
-    case classicApi = "https://picsum.photos/v2/list?page=25"
-    case blurApi = "https://picsum.photos/300/300/?blur"
-    case grayscaleApi = "https://picsum.photos/300/300?grayscale"
-}

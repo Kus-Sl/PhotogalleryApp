@@ -38,12 +38,21 @@ class NetworkManager {
 
     func fetchPhoto(url: String, completionHandler: @escaping (Data) -> Void) {
         guard let photoURL = URL(string: url) else { return }
-        guard let photoData = try? Data(contentsOf: photoURL) else {
-            print("Error on get request photo level")
-            return
-        }
-        DispatchQueue.main.async {
-            completionHandler(photoData)
+        DispatchQueue.global().async {
+            guard let photoData = try? Data(contentsOf: photoURL) else {
+                print("Error on get request photo level")
+                return
+            }
+            DispatchQueue.main.async {
+                completionHandler(photoData)
+            }
         }
     }
 }
+
+enum PhotoLink: String {
+    case classicApi = "https://picsum.photos/v2/list?page=25"
+    case blurApi = "https://picsum.photos/300/300/?blur"
+    case grayscaleApi = "https://picsum.photos/300/300?grayscale"
+}
+
