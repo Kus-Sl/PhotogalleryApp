@@ -15,9 +15,14 @@ class GalleryCollectionViewController: UICollectionViewController {
     private let spacing: CGFloat = 3
 
     func createClassicGallery(by url: String) {
-        NetworkManager.shared.fetchPhotos(url: url) { photos in
-            self.photos = photos
-            self.collectionView.reloadData()
+        NetworkManager.shared.fetchPhotos(dataType: [Photo].self, url: PhotoLink.classicApi.rawValue) { result in
+            switch result {
+            case .success(let photos):
+                self.photos = photos
+                self.collectionView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
         }
     }
 

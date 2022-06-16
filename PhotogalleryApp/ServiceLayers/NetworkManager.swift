@@ -13,41 +13,52 @@ class NetworkManager {
 
     private init () {}
 
-    func fetchPhotos(url: String, completionHandler: @escaping ([Photo]?) -> Void) {
+    func fetchPhotos<T: Decodable>(dataType: T.Type, url: String, completion: @escaping (Result<T, NetworkError>) -> Void) {
+        guard let dataURL = URL(string: url) else {
+            completion(.failure(.invalidURL))
+            return
+        }
 
-        guard let dataURL = URL(string: url) else { return }
         URLSession.shared.dataTask(with: dataURL) { data, _, error in
             guard let data = data else {
-                print(error?.localizedDescription ?? "No error description")
-                print("Error on GET request photos level")
+                completion(.failure(.noData))
+                //                print(completion)
                 return
             }
 
             do {
-                let photos = try JSONDecoder().decode([Photo].self, from: data)
+                let photos = try JSONDecoder().decode(T.self, from: data)
                 DispatchQueue.main.async {
-                    print(photos)
-                    completionHandler(photos)
+                    completion(.success(photos))
                 }
-            } catch let error {
-                print(error.localizedDescription)
-                print("Error on decode photos level")
+            } catch {
+                completion(.failure(.decodingError))
             }
         }.resume()
     }
 
-    func fetchPhoto(url: String, completionHandler: @escaping (Data) -> Void) {
-        guard let photoURL = URL(string: url) else { return }
+    func fetchPhoto(url: String, completion: @escaping (Result<Data, NetworkError>) -> Void) {
+        guard let photoURL = URL(string: url) else {
+            completion(.failure(.invalidURL))
+            return
+        }
+
         DispatchQueue.global().async {
             guard let photoData = try? Data(contentsOf: photoURL) else {
-                print("Error on get request photo level")
+                completion(.failure(.noData))
                 return
             }
             DispatchQueue.main.async {
-                completionHandler(photoData)
+                completion(.success(photoData))
             }
         }
     }
+}
+
+enum NetworkError: Error {
+    case invalidURL
+    case noData
+    case decodingError
 }
 
 enum PhotoLink: String {

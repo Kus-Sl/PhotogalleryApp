@@ -16,9 +16,14 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     
     func configure(by photo: Photo?) {
         guard let photoURL = photo?.download_url else { return }
-        NetworkManager.shared.fetchPhoto(url: photoURL) { data in
-            self.photo.image = UIImage(data: data)
-            self.activityIndicator.stopAnimating()
+        NetworkManager.shared.fetchPhoto(url: photoURL) { result in
+            switch result {
+            case .success(let data):
+                self.photo.image = UIImage(data: data)
+                self.activityIndicator.stopAnimating()
+            case .failure(let error):
+                print(error)
+            }
         }
     }
     
