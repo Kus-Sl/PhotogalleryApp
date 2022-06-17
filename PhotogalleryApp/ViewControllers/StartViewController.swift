@@ -10,12 +10,11 @@ import UIKit
 class StartViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let segueIdentifier = segue.identifier else { return }
         guard let galleryVC = segue.destination as? GalleryCollectionViewController
         else { return }
-        galleryVC.title = segueIdentifier
+        galleryVC.title = segue.identifier
 
-        switch segueIdentifier {
+        switch segue.identifier {
         case TypeGallery.classic.rawValue:
             galleryVC.createClassicGallery(by: PhotoLink.classicApi.rawValue)
         case TypeGallery.blur.rawValue:
