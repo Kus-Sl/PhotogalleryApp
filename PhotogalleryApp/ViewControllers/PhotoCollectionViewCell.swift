@@ -15,7 +15,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     static let identifier = "PhotoCell"
     
     func configure(by photo: Photo?) {
-        guard let photoURL = photo?.download_url else { return }
+        guard let photoURL = photo?.downloadUrl else { return }
         NetworkManager.shared.fetchPhoto(url: photoURL) { result in
             switch result {
             case .success(let data):

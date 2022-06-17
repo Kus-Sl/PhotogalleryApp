@@ -14,10 +14,10 @@ struct Photo: Decodable {
     let width: Int?
     let height: Int?
     let url: String?
-    let download_url: String?
+    let downloadUrl: String?
 
-    init(download_url: String) {
-        self.download_url = download_url
+    init(downloadUrl: String) {
+        self.downloadUrl = downloadUrl
         self.id = nil
         self.author = nil
         self.width = nil
