@@ -13,7 +13,7 @@ class NetworkManager {
 
     private init () {}
 
-    func fetchPhotos<T: Decodable>(dataType: T.Type, url: String, completion: @escaping (Result<T, NetworkError>) -> Void) {
+    func fetch<T: Decodable>(dataType: T.Type, url: String, completion: @escaping (Result<T, NetworkError>) -> Void) {
         guard let dataURL = URL(string: url) else {
             completion(.failure(.invalidURL))
             return
@@ -22,14 +22,13 @@ class NetworkManager {
         URLSession.shared.dataTask(with: dataURL) { data, _, error in
             guard let data = data else {
                 completion(.failure(.noData))
-                //                print(completion)
                 return
             }
 
             do {
-                let photos = try JSONDecoder().decode(T.self, from: data)
+                let type = try JSONDecoder().decode(T.self, from: data)
                 DispatchQueue.main.async {
-                    completion(.success(photos))
+                    completion(.success(type))
                 }
             } catch {
                 completion(.failure(.decodingError))
