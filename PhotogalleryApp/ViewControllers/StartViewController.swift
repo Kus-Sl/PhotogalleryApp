@@ -8,18 +8,21 @@
 import UIKit
 
 class StartViewController: UIViewController {
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let galleryVC = segue.destination as? GalleryCollectionViewController
         else { return }
-        galleryVC.title = segue.identifier
-
-        switch segue.identifier {
-        case TypeGallery.classic.rawValue:
+        guard let segueID = segue.identifier else { return }
+        guard let typeGallery = TypeGallery.init(rawValue: segueID)
+        else { return}
+        galleryVC.title = typeGallery.rawValue
+        
+        switch typeGallery {
+        case .classic:
             galleryVC.createClassicGallery(by: PhotoLink.classicApi.rawValue)
-        case TypeGallery.blur.rawValue:
+        case .blur:
             galleryVC.createBlurOrGrayscaleGallery(by: PhotoLink.blurApi.rawValue)
-        default:
+        case .grayscale:
             galleryVC.createBlurOrGrayscaleGallery(by: PhotoLink.grayscaleApi.rawValue)
         }
     }
