@@ -13,7 +13,7 @@ class NetworkManager {
 
     private init () {}
 
-    func fetch<T: Decodable>(dataType: T.Type, url: String, completion: @escaping (Result<T, NetworkError>) -> Void) {
+    func fetch<T: Decodable>(dataType: T.Type, url: String, completion: @escaping (Result<T, NetworkErrors>) -> Void) {
         guard let dataURL = URL(string: url) else {
             completion(.failure(.invalidURL))
             return
@@ -39,7 +39,7 @@ class NetworkManager {
         }.resume()
     }
 
-    func fetchPhoto(url: String, completion: @escaping (Result<Data, NetworkError>) -> Void) {
+    func fetchPhoto(url: String, completion: @escaping (Result<Data, NetworkErrors>) -> Void) {
         guard let photoURL = URL(string: url) else {
             completion(.failure(.invalidURL))
             return
@@ -57,13 +57,13 @@ class NetworkManager {
     }
 }
 
-enum NetworkError: Error {
+enum NetworkErrors: Error {
     case invalidURL
     case noData
     case decodingError
 }
 
-enum PhotoLink: String {
+enum PhotoLinks: String {
     case classicApi = "https://picsum.photos/v2/list?page=25"
     case blurApi = "https://picsum.photos/300/300/?blur"
     case grayscaleApi = "https://picsum.photos/300/300?grayscale"

@@ -19,11 +19,11 @@ class StartViewController: UIViewController {
         
         switch typeGallery {
         case .classic:
-            galleryVC.createClassicGallery(by: PhotoLink.classicApi.rawValue)
+            galleryVC.createClassicGallery(by: PhotoLinks.classicApi.rawValue)
         case .blur:
-            galleryVC.createBlurOrGrayscaleGallery(by: PhotoLink.blurApi.rawValue)
+            galleryVC.createBlurOrGrayscaleGallery(by: PhotoLinks.blurApi.rawValue)
         case .grayscale:
-            galleryVC.createBlurOrGrayscaleGallery(by: PhotoLink.grayscaleApi.rawValue)
+            galleryVC.createBlurOrGrayscaleGallery(by: PhotoLinks.grayscaleApi.rawValue)
         }
     }
 }
