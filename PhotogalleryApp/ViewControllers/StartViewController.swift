@@ -13,7 +13,7 @@ class StartViewController: UIViewController {
         guard let galleryVC = segue.destination as? GalleryCollectionViewController
         else { return }
         guard let segueID = segue.identifier else { return }
-        guard let typeGallery = TypeGallery.init(rawValue: segueID)
+        guard let typeGallery = Segue.init(rawValue: segueID)
         else { return}
         galleryVC.title = typeGallery.rawValue
         
@@ -26,4 +26,10 @@ class StartViewController: UIViewController {
             galleryVC.createBlurOrGrayscaleGallery(by: PhotoLinks.grayscaleApi.rawValue)
         }
     }
+
+    private enum Segue: String {
+        case classic = "Classic Photos"
+        case blur = "Blur Photos"
+        case grayscale = "Grayscale Photos"
+}
 }

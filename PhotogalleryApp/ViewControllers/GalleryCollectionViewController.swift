@@ -82,9 +82,3 @@ extension GalleryCollectionViewController: UICollectionViewDelegateFlowLayout {
         )
     }
 }
-
-enum TypeGallery: String {
-    case classic = "Classic Photos"
-    case blur = "Blur Photos"
-    case grayscale = "Grayscale Photos"
-}
