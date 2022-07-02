@@ -27,9 +27,7 @@ class GalleryCollectionViewController: UICollectionViewController {
     }
 
     func createBlurOrGrayscaleGallery(by url: String) {
-        Array (1...30).forEach { index in
-            photos.append(Photo(downloadUrl: url + "\(index)"))
-        }
+        photos = [Photo](repeating: Photo(downloadUrl: url), count: 30)
     }
 }
 

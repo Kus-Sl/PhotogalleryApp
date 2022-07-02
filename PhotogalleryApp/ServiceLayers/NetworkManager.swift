@@ -65,7 +65,7 @@ enum NetworkErrors: Error {
 
 enum PhotoLinks: String {
     case classicApi = "https://picsum.photos/v2/list?page=1&limit="
-    case blurApi = "https://picsum.photos/300/300/?blur&random="
-    case grayscaleApi = "https://picsum.photos/300/300?grayscale&random="
+    case blurApi = "https://picsum.photos/300/300/?blur"
+    case grayscaleApi = "https://picsum.photos/300/300?grayscale"
 }
 
