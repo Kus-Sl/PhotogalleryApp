@@ -24,10 +24,10 @@ class StartViewController: UIViewController {
             galleryVC.createBlurOrGrayscaleGallery(by: PhotoLinks.grayscaleApi.rawValue)
         }
     }
-
+    
     private enum Segue: String {
         case classic = "Classic Photos"
         case blur = "Blur Photos"
         case grayscale = "Grayscale Photos"
-}
+    }
 }

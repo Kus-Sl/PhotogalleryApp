@@ -9,13 +9,13 @@ import UIKit
 
 class GalleryCollectionViewController: UICollectionViewController {
 
-    private var photos: [Photo]?
+    private var photos: [Photo] = []
 
     private let cells: CGFloat = 3
     private let spacing: CGFloat = 3
 
     func createClassicGallery(by url: String) {
-        NetworkManager.shared.fetch(dataType: [Photo].self, url: PhotoLinks.classicApi.rawValue) { result in
+        NetworkManager.shared.fetch(dataType: [Photo].self, url: url) { result in
             switch result {
             case .success(let photos):
                 self.photos = photos
@@ -27,20 +27,22 @@ class GalleryCollectionViewController: UICollectionViewController {
     }
 
     func createBlurOrGrayscaleGallery(by url: String) {
-        photos = [Photo](repeating: Photo(downloadUrl: url), count: 30)
+        Array (1...30).forEach { index in
+            photos.append(Photo(downloadUrl: url + "\(index)"))
+        }
     }
 }
 
 // MARK: UICollectionViewDataSource
 extension GalleryCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        photos?.count ?? 0
+        photos.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
 
-        cell.configure(by: photos?[indexPath.item])
+        cell.configure(by: photos[indexPath.item])
 
         return cell
     }
