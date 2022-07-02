@@ -10,11 +10,9 @@ import UIKit
 class StartViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let galleryVC = segue.destination as? GalleryCollectionViewController
-        else { return }
+        guard let galleryVC = segue.destination as? GalleryCollectionViewController else { return }
         guard let segueID = segue.identifier else { return }
-        guard let typeGallery = Segue.init(rawValue: segueID)
-        else { return}
+        guard let typeGallery = Segue.init(rawValue: segueID) else { return }
         galleryVC.title = typeGallery.rawValue
         
         switch typeGallery {

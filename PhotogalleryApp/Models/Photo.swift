@@ -9,11 +9,5 @@ import Foundation
 
 struct Photo: Decodable {
 
-    let url: String?
     let downloadUrl: String?
-
-    init(downloadUrl: String) {
-        self.downloadUrl = downloadUrl
-        self.url = nil
-    }
 }
