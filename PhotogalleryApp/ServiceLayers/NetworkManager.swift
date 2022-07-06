@@ -13,7 +13,7 @@ class NetworkManager {
 
     private init () {}
 
-    func fetch<T: Decodable>(dataType: T.Type, url: String, completion: @escaping (Result<T, NetworkErrors>) -> Void) {
+    func fetch<T: Decodable>(dataType: T.Type, from url: String, completion: @escaping (Result<T, NetworkErrors>) -> Void) {
         guard let dataURL = URL(string: url) else {
             completion(.failure(.invalidURL))
             return
@@ -39,7 +39,7 @@ class NetworkManager {
         }.resume()
     }
 
-    func fetchPhoto(url: String, completion: @escaping (Result<Data, NetworkErrors>) -> Void) {
+    func fetchPhoto(from url: String, completion: @escaping (Result<Data, NetworkErrors>) -> Void) {
         guard let photoURL = URL(string: url) else {
             completion(.failure(.invalidURL))
             return
