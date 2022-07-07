@@ -14,7 +14,7 @@ class GalleryCollectionViewController: UICollectionViewController {
     private let cells: CGFloat = 3
     private let spacing: CGFloat = 3
 
-    func createClassicGallery(by url: String) {
+    func createClassicGallery(from url: String) {
         NetworkManager.shared.fetch(dataType: [Photo].self, from: url) { result in
             switch result {
             case .success(let photos):
@@ -26,12 +26,13 @@ class GalleryCollectionViewController: UICollectionViewController {
         }
     }
 
-    func createBlurOrGrayscaleGallery(by url: String) {
-        photos = [Photo](repeating: Photo(downloadUrl: url), count: 30)
+    func createBlurOrGrayscaleGallery(from url: String) {
+        photos = [Photo](repeating: Photo(downloadUrl: url), count: 5)
     }
 
     deinit {
         CacheManager.shared.cache.removeAllObjects()
+        print("VC deinited")
     }
 }
 
@@ -43,7 +44,7 @@ extension GalleryCollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
-        cell.configure(by: photos[indexPath.item], and: indexPath)
+        cell.configureCell(with: photos[indexPath.item], and: indexPath)
 
         return cell
     }

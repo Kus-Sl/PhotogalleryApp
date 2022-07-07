@@ -14,7 +14,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "PhotoCell"
 
-    func configure(by image: Photo?, and indexPath: IndexPath) {
+    func configureCell(with image: Photo?, and indexPath: IndexPath) {
         tag = indexPath.item
 
         let cacheKey = String(indexPath.row) as NSString
@@ -34,8 +34,11 @@ class PhotoCollectionViewCell: UICollectionViewCell {
                 CacheManager.shared.cache.setObject(image, forKey: cacheKey)
 
                 // Переделать проверку на остановку таски и перенести всю логику в NetworkManager
+
+                // Этой строчкой захватываю значение индекса на момент вызова всего метода
                 guard self?.tag == indexPath.item else { return }
 
+                // Поймать отличия в ячейках
                 self?.photo.image = image
                 self?.activityIndicator.stopAnimating()
             case .failure(let error):
