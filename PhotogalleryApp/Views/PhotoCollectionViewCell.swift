@@ -33,8 +33,6 @@ class PhotoCollectionViewCell: UICollectionViewCell {
                 guard let image = UIImage(data: data) else { return }
                 CacheManager.shared.cache.setObject(image, forKey: cacheKey)
 
-                // Переделать проверку на остановку таски и перенести всю логику в NetworkManager
-
                 // Этой строчкой захватываю значение индекса на момент вызова всего метода
                 guard self?.tag == indexPath.item else { return }
 
