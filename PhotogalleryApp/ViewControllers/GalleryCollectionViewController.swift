@@ -15,11 +15,11 @@ class GalleryCollectionViewController: UICollectionViewController {
     private let spacing: CGFloat = 3
 
     func createClassicGallery(from url: String) {
-        NetworkManager.shared.fetch(dataType: [Photo].self, from: url) { result in
+        NetworkManager.shared.fetch(dataType: [Photo].self, from: url) { [weak self] result in
             switch result {
             case .success(let photos):
-                self.photos = photos
-                self.collectionView.reloadData()
+                self?.photos = photos
+                self?.collectionView.reloadData()
             case .failure(let error):
                 print(error)
             }
@@ -30,10 +30,9 @@ class GalleryCollectionViewController: UICollectionViewController {
         photos = [Photo](repeating: Photo(downloadUrl: url), count: 30)
     }
 
-    deinit {
-        // Разобраться, почему кэш остается
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         CacheManager.shared.cache.removeAllObjects()
-        print("VC deinited")
     }
 }
 

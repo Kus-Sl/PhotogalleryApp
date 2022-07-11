@@ -30,13 +30,14 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         NetworkManager.shared.fetchPhoto(from: photoURL) { [weak self] result in
             switch result {
             case .success(let data):
-                guard let image = UIImage(data: data) else { return }
-                CacheManager.shared.cache.setObject(image, forKey: cacheKey as NSNumber)
-
                 guard self?.tag == cacheKey else { return }
+
+                guard let image = UIImage(data: data) else { return }
 
                 self?.photo.image = image
                 self?.activityIndicator.stopAnimating()
+
+                CacheManager.shared.cache.setObject(image, forKey: cacheKey as NSNumber)
             case .failure(let error):
                 print(error)
             }
