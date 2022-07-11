@@ -14,12 +14,12 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "PhotoCell"
 
-    func configureCell(with image: Photo?, and indexPath: IndexPath) {
+    func configure(with image: Photo?, and indexPath: IndexPath) {
         tag = indexPath.item
 
-        let cacheKey = String(indexPath.row) as NSString
+        let cacheKey = indexPath.item
 
-        if let cachedImage = CacheManager.shared.cache.object(forKey: cacheKey)  {
+        if let cachedImage = CacheManager.shared.cache.object(forKey: cacheKey as NSNumber)  {
             photo.image = cachedImage
             activityIndicator.stopAnimating()
             return
@@ -31,12 +31,10 @@ class PhotoCollectionViewCell: UICollectionViewCell {
             switch result {
             case .success(let data):
                 guard let image = UIImage(data: data) else { return }
-                CacheManager.shared.cache.setObject(image, forKey: cacheKey)
+                CacheManager.shared.cache.setObject(image, forKey: cacheKey as NSNumber)
 
-                // Этой строчкой захватываю значение индекса на момент вызова всего метода
-                guard self?.tag == indexPath.item else { return }
+                guard self?.tag == cacheKey else { return }
 
-                // Поймать отличия в ячейках
                 self?.photo.image = image
                 self?.activityIndicator.stopAnimating()
             case .failure(let error):
@@ -55,7 +53,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
 
 class CacheManager {
 
-    let cache = NSCache<NSString, UIImage>()
+    let cache = NSCache<NSNumber, UIImage>()
 
     static let shared = CacheManager()
 

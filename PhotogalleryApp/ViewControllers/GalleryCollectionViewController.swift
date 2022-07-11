@@ -31,6 +31,7 @@ class GalleryCollectionViewController: UICollectionViewController {
     }
 
     deinit {
+        // Разобраться, почему кэш остается
         CacheManager.shared.cache.removeAllObjects()
         print("VC deinited")
     }
@@ -44,7 +45,7 @@ extension GalleryCollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
-        cell.configureCell(with: photos[indexPath.item], and: indexPath)
+        cell.configure(with: photos[indexPath.item], and: indexPath)
 
         return cell
     }
